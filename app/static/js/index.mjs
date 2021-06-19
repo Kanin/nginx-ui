@@ -74,11 +74,6 @@ function add_domain() {
 window.add_domain = add_domain;
 
 function enable_domain(name, enable) {
-    if (enable) {
-        toastr["success"](`${name} has been enabled`, "Success")
-    } else {
-        toastr["success"](`${name} has been disabled`, "Success")
-    }
     $.ajax({
         type: 'POST',
         url: '/api/domain/' + name + '/enable',
@@ -89,6 +84,11 @@ function enable_domain(name, enable) {
         }),
         statusCode: {
             200: function () {
+                if (enable) {
+                    toastr["success"](`${name} has been enabled`, "Success")
+                } else {
+                    toastr["success"](`${name} has been disabled`, "Success")
+                }
                 fetch_domain(name);
             }
         }
