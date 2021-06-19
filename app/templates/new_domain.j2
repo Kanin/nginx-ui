@@ -2,6 +2,7 @@ server {
     listen          80;
     server_name     {{ name }},
     access_log      logs/{{ name }}.access.log main;
+    error_log       logs/{{ name }}.error.log main;
 
     location / {
         proxy_pass      http://127.0.0.1:8080;
