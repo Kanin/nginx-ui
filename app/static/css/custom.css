@@ -1,0 +1,55 @@
+@import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
+
+textarea {
+    margin: 0;
+    border-radius: 0;
+}
+
+div.workflow-editor-wrapper,
+textarea.ace_text-input,
+div.ace_text-layer,
+div.ace_line,
+div.ace_line span,
+div.ace_cursor-layer,
+div.ace_content,
+div.ace_editor > div:nth-child(7) > div:last-child {
+    font-family: 'Fira Code', monospace !important
+}
+
+#main-container {
+    margin-top: 5em;
+}
+
+#domain {
+    display: none;
+}
+
+@media only screen and (max-width: 666px) {
+    [class*="mobile hidden"],
+    [class*="tablet only"]:not(.mobile),
+    [class*="computer only"]:not(.mobile),
+    [class*="large monitor only"]:not(.mobile),
+    [class*="widescreen monitor only"]:not(.mobile),
+    [class*="or lower hidden"] {
+        display: none !important;
+    }
+}
+
+#editor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.parent-editor {
+    width: 100%;
+    height: 600px;
+    display: inline-block;
+    position: relative;
+}
+
+.ace_editor {
+    font-size: 15px;
+}
