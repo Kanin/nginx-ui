@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -54,8 +54,11 @@
     </div>
 
     <div class="right item" style="margin-left: 0 !important;">
-      <button class="ui red button" onclick="window.location = '/logout'" tabindex="0">
-        Logout
+      <button class="ui green button" title="Reload Nginx" onclick="reload_nginx()" tabindex="0">
+        <i class="sync icon" style="margin: 0; color: white; opacity: 1;"></i>
+      </button>
+      <button class="ui red button" title="Logout" onclick="window.location = '/logout'" tabindex="0" style="margin-left: 10px">
+        <i class="sign out icon" style="margin: 0; color: white; opacity: 1;"></i>
       </button>
     </div>
 

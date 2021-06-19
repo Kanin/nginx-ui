@@ -1,10 +1,21 @@
 import datetime
 import os
+import subprocess
 
 import flask
 from flask_login import login_required
 
 from app.api import api
+
+
+@api.route("/reload-nginx", methods=["POST"])
+@login_required
+def reload_nginx():
+    res = subprocess.run("sudo nginx -t", shell=True, stderr=subprocess.PIPE)
+    if res.returncode != 0:
+        return flask.make_response({"success": False, "message": str(res.stderr)}), 400
+    subprocess.run("sudo nginx -s reload", shell=True)
+    return flask.make_response({"success": True}), 200
 
 
 @api.route("/config/<name>", methods=["GET"])
@@ -97,13 +108,15 @@ def get_domain(name: str):
     available_path = flask.current_app.config["SITES_AVAILABLE_PATH"]
     enabled_path = flask.current_app.config["SITES_ENABLED_PATH"]
     file_data = ""
+    site_name = "placeholder.com"
     enabled = False
 
     for site in os.listdir(available_path):
         available_site = os.path.join(available_path, site)
         enabled_site = os.path.join(enabled_path, site)
-        if os.path.isfile(available_site) and site.startswith(name):
-            name = site.split(".")[0].replace("_", ".")
+        site_name = site.split(".")[0]
+        if os.path.isfile(available_site) and site_name == name:
+            site_name = site_name.replace("_", ".")
 
             if os.path.exists(enabled_site):
                 enabled = True
@@ -113,7 +126,7 @@ def get_domain(name: str):
 
             break
 
-    return flask.render_template("domain.html", name=name, file=file_data, enabled=enabled), 200
+    return flask.render_template("domain.html", name=site_name, file=file_data, enabled=enabled), 200
 
 
 @api.route("/domain/<name>", methods=["POST"])

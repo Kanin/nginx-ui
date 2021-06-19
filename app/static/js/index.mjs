@@ -42,6 +42,22 @@ $(document).ready(function () {
     load_domains();
 });
 
+function reload_nginx() {
+    $.ajax({
+        type: 'POST',
+        url: '/api/reload-nginx',
+        statusCode: {
+            200: function () {
+                toastr["success"]("Nginx has been reloaded", "Success")
+            },
+            400: function () {
+                toastr["error"]("Nginx has not been reloaded", "Error")
+            }
+        }
+    });
+}
+window.reload_nginx = reload_nginx;
+
 
 function load_domains() {
     $.when(fetch_html('api/domains')).then(function () {

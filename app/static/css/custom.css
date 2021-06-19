@@ -1,5 +1,37 @@
 @import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
 
+/*.theme-dark {*/
+/*    --background-color: #383838;*/
+
+/*    --card-color: #313131;*/
+/*    --card-border-color: #262626;*/
+/*}*/
+
+/*.theme-light {*/
+/*    --background-color: white;*/
+
+/*    --card-color: #c2c2c2;*/
+/*    --card-border-color: #9c9c9c;*/
+/*}*/
+
+/*html {*/
+/*    background-color: var(--background-color);*/
+/*}*/
+
+/*body {*/
+/*    background-color: var(--background-color);*/
+/*}*/
+
+/*.ui.segment,*/
+/*.ui.cards > .card {*/
+/*    background-color: var(--card-color);*/
+/*}*/
+
+/*.ui.segment,*/
+/*.ui.cards > .card > .content {*/
+/*    border: 1px solid var(--card-border-color);*/
+/*}*/
+
 textarea {
     margin: 0;
     border-radius: 0;
