@@ -1,5 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm+iml,flask,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm+iml,flask,python
+db.sqlite
+
 
 ### Flask ###
 instance/*
@@ -24,7 +26,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
