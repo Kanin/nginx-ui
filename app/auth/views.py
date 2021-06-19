@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, render_template
+from flask import request, redirect, url_for, render_template, flash
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
 from app import User
@@ -18,6 +18,7 @@ def login_post():
     user = User.query.filter_by(name="admin").first()
 
     if not user or not check_password_hash(user.password, password):
+        flash("Password is incorrect", "error")
         return redirect(url_for("auth.login"))
 
     login_user(user, remember=remember)

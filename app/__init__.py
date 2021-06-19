@@ -4,12 +4,14 @@ from flask_login import LoginManager, UserMixin
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
+from flask_toastr import Toastr
 
 from config import config
 
 moment = Moment()
 login_manager = LoginManager()
 db = SQLAlchemy()
+toastr = Toastr()
 
 
 class User(UserMixin, db.Model):
@@ -29,6 +31,8 @@ def create_app(config_name):
     moment.init_app(app)
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
+    toastr.init_app(app)
+    app.config["TOASTR_POSITION_CLASS"] = "toast-bottom-right"
 
     @login_manager.user_loader
     def load_user(user_id):

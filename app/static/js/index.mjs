@@ -2,6 +2,24 @@ import * as ConfigPage from './pages/config.mjs';
 import * as DomainPage from './pages/domain.mjs';
 
 let editor = null;
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-bottom-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 
 $(document).ready(function () {
     $('.ui.dropdown').dropdown();
@@ -42,6 +60,7 @@ function add_domain() {
     document.activeElement.blur()
     selector.val('');
 
+    toastr["success"](`${name} has been created`, "Success")
     $.ajax({
         type: 'POST',
         url: '/api/domain/' + name,
@@ -55,7 +74,11 @@ function add_domain() {
 window.add_domain = add_domain;
 
 function enable_domain(name, enable) {
-
+    if (enable) {
+        toastr["success"](`${name} has been enabled`, "Success")
+    } else {
+        toastr["success"](`${name} has been disabled`, "Success")
+    }
     $.ajax({
         type: 'POST',
         url: '/api/domain/' + name + '/enable',
@@ -88,6 +111,7 @@ function update_domain(name) {
         }),
         statusCode: {
             200: function () {
+                toastr["success"](`${name} has been updated`, "Success")
                 setTimeout(function () {
                     fetch_domain(name)
                 }, 400)
@@ -121,6 +145,7 @@ function remove_domain(name) {
         url: '/api/domain/' + name,
         statusCode: {
             200: function () {
+                toastr["success"](`${name} has been removed`, "Success")
                 load_domains();
             },
             400: function () {
@@ -161,7 +186,7 @@ function update_config(name) {
         }),
         statusCode: {
             200: function () {
-
+                toastr["success"](`${name} has been updated`, "Success")
                 setTimeout(function () {
                     $('#dimmer').removeClass('active');
                 }, 450);
