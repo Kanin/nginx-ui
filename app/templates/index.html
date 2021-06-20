@@ -1,76 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <title>Nginx UI</title>
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/nginx.ico') }}" sizes="48x48">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css"/>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  {{ moment.include_moment() }}
-  {{ toastr.include_jquery() }}
-  {{ toastr.include_toastr_css() }}
-  {{ toastr.message() }}
-  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.4.12/src-min/ace.js"></script>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
-  <script src="{{ url_for('static', filename='js/index.mjs') }}" type="module"></script>
-</head>
+{% include "components/head.html" %}
 <body>
 
-<div class="ui fixed inverted menu">
-  <!-- Menu -->
-  <div class="ui container">
-
-    <a class="header item" href="/">
-      <img class="logo" src="{{ url_for('static', filename='images/nginx.png') }}">
-      Nginx UI
-    </a>
-
-    <div class="ui dropdown item" id="edit_config">
-      Main Config
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        {% for name in config %}
-          <div class="config item">{{ name }}</div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <a class="item" id="domains">
-      Domains
-    </a>
-
-    <div class="mobile hidden right item">
-      <div class="ui action input">
-        <input type="text" placeholder="example.com" id="add_domain">
-        <button class="ui green button" onclick="add_domain()" tabindex="0">
-          Add
-        </button>
-      </div>
-    </div>
-
-    <div class="right item" style="margin-left: 0 !important;">
-      <button class="ui green button" title="Reload Nginx" onclick="reload_nginx()" tabindex="0">
-        <i class="sync icon" style="margin: 0; color: white; opacity: 1;"></i>
-      </button>
-      <button class="ui red button" title="Logout" onclick="window.location = '/logout'" tabindex="0" style="margin-left: 10px">
-        <i class="sign out icon" style="margin: 0; color: white; opacity: 1;"></i>
-      </button>
-    </div>
-
-  </div>
-
-</div>
+{% include "components/nav.html" %}
 
 <div class="ui stackable grid container" id="main-container">
 
-  <div class="row" id="content"><!-- Content --></div>
+  <div class="row" id="content">
+    <!-- Content -->
+    {% block content %}{% endblock %}
+  </div>
 
 </div>
-{{ toastr.include_toastr_js() }}
 </body>
 </html>

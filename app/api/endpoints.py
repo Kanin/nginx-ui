@@ -35,7 +35,7 @@ def get_config(name: str):
     with open(os.path.join(nginx_path, name), "r") as f:
         file = f.read()
 
-    return flask.render_template("config.html", name=name, file=file), 200
+    return flask.render_template("components/config.html", name=name, file=file), 200
 
 
 @api.route("/config/<name>", methods=["POST"])
@@ -88,7 +88,7 @@ def get_domains():
 
     # sort sites by name
     sites_available = sorted(sites_available, key=lambda _site: _site["name"])
-    return flask.render_template("domains.html", sites_available=sites_available, sites_enabled=sites_enabled), 200
+    return flask.render_template("components/domains.html", sites_available=sites_available, sites_enabled=sites_enabled), 200
 
 
 @api.route("/domain/<name>", methods=["GET"])
@@ -126,7 +126,7 @@ def get_domain(name: str):
 
             break
 
-    return flask.render_template("domain.html", name=site_name, file=file_data, enabled=enabled), 200
+    return flask.render_template("components/domain.html", name=site_name, file=file_data, enabled=enabled), 200
 
 
 @api.route("/domain/<name>", methods=["POST"])
