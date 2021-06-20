@@ -5,8 +5,7 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 from flask_toastr import Toastr
-
-from config import config
+from config import Config
 
 moment = Moment()
 login_manager = LoginManager()
@@ -20,13 +19,11 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
 
 
-def create_app(config_name):
+def create_app():
     app = Flask(__name__)
 
-    app.config.from_object(config[config_name])
+    app.config.from_object(Config)
     app.secret_key = app.config["SECRET_KEY"]
-
-    config[config_name].init_app(app)
     db.init_app(app)
     moment.init_app(app)
     login_manager.login_view = "auth.login"

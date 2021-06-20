@@ -17,4 +17,4 @@ def index():
     """
     nginx_path = flask.current_app.config["NGINX_PATH"]
     config = [file for file in os.listdir(nginx_path) if os.path.isfile(os.path.join(nginx_path, file))]
-    return flask.render_template('index.html', config=config)
+    return flask.render_template('index.html', nginx_config=config)

@@ -1,36 +1,62 @@
 @import url("https://cdn.jsdelivr.net/gh/tonsky/FiraCode@5.2/distr/fira_code.css");
 
-/*.theme-dark {*/
-/*    --background-color: #383838;*/
+.theme-dark {
+    --background-color: #383838;
+    --background-color-alt: #424242;
 
-/*    --card-color: #313131;*/
-/*    --card-border-color: #262626;*/
-/*}*/
+    --text-color: white;
+    --text-color-alt: gray;
 
-/*.theme-light {*/
-/*    --background-color: white;*/
+    --card-color: #313131;
+    --card-border-color: #000000;
+}
 
-/*    --card-color: #c2c2c2;*/
-/*    --card-border-color: #9c9c9c;*/
-/*}*/
+/* Main */
+html.theme-dark {
+    background-color: var(--background-color);
+}
 
-/*html {*/
-/*    background-color: var(--background-color);*/
-/*}*/
+.theme-dark body {
+    background-color: var(--background-color);
+}
 
-/*body {*/
-/*    background-color: var(--background-color);*/
-/*}*/
+.theme-dark .ui.header {
+    color: var(--text-color);
+}
 
-/*.ui.segment,*/
-/*.ui.cards > .card {*/
-/*    background-color: var(--card-color);*/
-/*}*/
+/* Login */
+.theme-dark .ui.segment input[name="password"] {
+    color: var(--text-color);
+    background-color: #151515;
+}
 
-/*.ui.segment,*/
-/*.ui.cards > .card > .content {*/
-/*    border: 1px solid var(--card-border-color);*/
-/*}*/
+.theme-dark .ui.segment .icon.input {
+    color: var(--text-color-alt);
+}
+
+.theme-dark .ui.segment label[class="checkbox"] label[for="rememberme"] {
+    color: var(--text-color);
+}
+
+
+/* Index */
+.theme-dark .ui.cards > .card {
+    background-color: var(--card-color);
+    box-shadow: 0 1px 3px 0 var(--card-border-color), 0 0 0 1px var(--card-border-color);
+}
+
+.theme-dark .ui.segment {
+    background-color: var(--card-color);
+    border: 1px solid var(--card-border-color)
+}
+
+.theme-dark .ui.cards .card .content .header:not(:hover) {
+    color: var(--text-color);
+}
+
+.theme-dark .ui.cards .card .content .meta {
+    color: var(--text-color-alt);
+}
 
 textarea {
     margin: 0;
