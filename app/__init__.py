@@ -59,8 +59,4 @@ def create_app(config_name):
             user.password = generate_password_hash(flask.current_app.config["AUTH_PASSWORD"])
             db.session.commit()
 
-    @app.errorhandler(404)
-    def notfound(error):
-        return flask.render_template("404.html"), 404
-
     return app
