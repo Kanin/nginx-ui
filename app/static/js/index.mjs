@@ -1,5 +1,5 @@
 import * as ConfigPage from './pages/config.mjs';
-import * as DomainPage from './pages/domain.mjs';
+import * as SitePage from './pages/site.mjs';
 
 let editor = null;
 toastr.options = {
@@ -29,17 +29,17 @@ $(document).ready(function () {
         load_config(name);
     });
 
-    $('#domains').click(function () {
-        load_domains()
+    $('#sites').click(function () {
+        load_sites()
     });
 
-    $('#add_domain').on('keyup', function (event) {
+    $('#add_site').on('keyup', function (event) {
         if (event.keyCode === 13) {
-            add_domain()
+            add_site()
         }
     });
 
-    load_domains();
+    load_sites();
 });
 
 function reload_nginx() {
@@ -59,16 +59,16 @@ function reload_nginx() {
 window.reload_nginx = reload_nginx;
 
 
-function load_domains() {
-    $.when(fetch_html('api/domains')).then(function () {
-        $('#domain').hide();
-        $('#domain_cards').fadeIn();
+function load_sites() {
+    $.when(fetch_html('api/sites')).then(function () {
+        $('#site').hide();
+        $('#site_cards').fadeIn();
     });
 }
 
 
-function add_domain() {
-    let selector = $('#add_domain');
+function add_site() {
+    let selector = $('#add_site');
     let name = selector.val();
     if (!name) {
         return
@@ -76,23 +76,29 @@ function add_domain() {
     document.activeElement.blur()
     selector.val('');
 
-    toastr["success"](`${name} has been created`, "Success")
     $.ajax({
         type: 'POST',
-        url: '/api/domain/' + name,
+        url: '/api/site/' + name,
         statusCode: {
             201: function () {
-                fetch_domain(name)
+                toastr["success"](`${name} has been created`, "Success")
+                fetch_site(name)
+            },
+            409: function () {
+                toastr["error"](`${name} already exists!`, "Error")
+            },
+            500: function () {
+                toastr["error"]("Cannot write to file!", "Error")
             }
         }
     });
 }
-window.add_domain = add_domain;
+window.add_site = add_site;
 
-function enable_domain(name, enable) {
+function enable_site(name, enable) {
     $.ajax({
         type: 'POST',
-        url: '/api/domain/' + name + '/enable',
+        url: '/api/site/' + name + '/enable',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify({
@@ -105,21 +111,21 @@ function enable_domain(name, enable) {
                 } else {
                     toastr["success"](`${name} has been disabled`, "Success")
                 }
-                fetch_domain(name);
+                fetch_site(name);
             }
         }
     });
 
 }
-window.enable_domain = enable_domain;
+window.enable_site = enable_site;
 
-function update_domain(name) {
+function update_site(name) {
     let code = editor.getValue()
     $('#dimmer').addClass('active');
 
     $.ajax({
         type: 'PUT',
-        url: '/api/domain/' + name,
+        url: '/api/site/' + name,
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         data: JSON.stringify({
@@ -129,22 +135,22 @@ function update_domain(name) {
             200: function () {
                 toastr["success"](`${name} has been updated`, "Success")
                 setTimeout(function () {
-                    fetch_domain(name)
+                    fetch_site(name)
                 }, 400)
             }
         }
     });
 
 }
-window.update_domain = update_domain;
+window.update_site = update_site;
 
-function fetch_domain(name) {
-    fetch('api/domain/' + name)
+function fetch_site(name) {
+    fetch('api/site/' + name)
         .then(function (response) {
             response.text().then(function (text) {
                 $('#editing').html(text).fadeIn();
-                $('#domain_cards').hide();
-                editor = DomainPage.render()
+                $('#site_cards').hide();
+                editor = SitePage.render()
             });
         })
         .catch(function (error) {
@@ -152,17 +158,17 @@ function fetch_domain(name) {
         });
 
 }
-window.fetch_domain = fetch_domain;
+window.fetch_site = fetch_site;
 
-function remove_domain(name) {
+function remove_site(name) {
 
     $.ajax({
         type: 'DELETE',
-        url: '/api/domain/' + name,
+        url: '/api/site/' + name,
         statusCode: {
             200: function () {
                 toastr["success"](`${name} has been removed`, "Success")
-                load_domains();
+                load_sites();
             },
             400: function () {
                 alert('Deleting not possible');
@@ -171,7 +177,7 @@ function remove_domain(name) {
     });
 
 }
-window.remove_domain = remove_domain;
+window.remove_site = remove_site;
 
 function fetch_html(url) {
     fetch(url)
@@ -219,7 +225,7 @@ function load_config(name) {
         .then(function (response) {
             response.text().then(function (text) {
                 $('#editing').html(text).fadeIn();
-                $('#domain_cards').hide();
+                $('#site_cards').hide();
                 editor = ConfigPage.render()
             });
         })

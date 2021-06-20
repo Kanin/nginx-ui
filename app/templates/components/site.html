@@ -6,20 +6,20 @@
 
     <div class="column">
       <div class="ui right floated buttons">
-        <button class="ui right floated labeled icon button" onclick="update_domain('{{ name }}')">
+        <button class="ui right floated labeled icon button" onclick="update_site('{{ name }}')">
           <i class="play icon"></i>Apply
         </button>
 
-        <button class="ui right floated labeled icon button" onclick="remove_domain('{{ name }}')">
+        <button class="ui right floated labeled icon button" onclick="remove_site('{{ name }}')">
           <i class="trash icon"></i>Remove
         </button>
 
         {% if enabled %}
-          <button class="ui right floated labeled icon button" onclick="enable_domain('{{ name }}', false)">
+          <button class="ui right floated labeled icon button" onclick="enable_site('{{ name }}', false)">
             <i class="circle middle aligned outline grey icon"></i>Disable
           </button>
         {% else %}
-          <button class="ui right floated labeled icon button" onclick="enable_domain('{{ name }}', true)">
+          <button class="ui right floated labeled icon button" onclick="enable_site('{{ name }}', true)">
             <i class="circle middle aligned green icon"></i>Enable
           </button>
         {% endif %}
