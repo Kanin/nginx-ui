@@ -2,6 +2,10 @@ import os
 
 
 class Config:
+    # Running
+    SERVER_NAME = "0.0.0.0:5000"
+    DEBUG = False
+
     # Theme
     DARK_THEME = False  # BETA: Gives the UI a darker theme
 

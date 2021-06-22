@@ -50,8 +50,8 @@ function reload_nginx() {
             200: function () {
                 toastr["success"]("Nginx has been reloaded", "Success")
             },
-            400: function () {
-                toastr["error"]("Nginx has not been reloaded", "Error")
+            400: function (data) {
+                toastr["error"](`Nginx has not been reloaded:\n${data.responseJSON.message}`, "Error")
             }
         }
     });
