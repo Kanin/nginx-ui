@@ -1,0 +1,60 @@
+.theme-dark {
+  --background-color: #383838;
+  --background-color-alt: #424242;
+
+  --text-color: white;
+  --text-color-alt: gray;
+
+  --card-color: #313131;
+  --card-border-color: #000000;
+}
+
+html.theme-dark {
+  // Main
+  background-color: var(--background-color);
+
+  body {
+    background-color: var(--background-color);
+  }
+
+  .ui.header {
+    color: var(--text-color);
+  }
+
+  // Login
+  .ui.segment {
+    input[name="password"] {
+      color: var(--text-color);
+      background-color: #151515;
+    }
+
+    .icon.input {
+      color: var(--text-color-alt);
+    }
+
+    label[class="checkbox"] label[for="rememberme"] {
+      color: var(--text-color);
+    }
+  }
+
+  // Index
+  .ui.cards .card {
+    background-color: var(--card-color);
+    box-shadow: 0 1px 3px 0 var(--card-border-color), 0 0 0 1px var(--card-border-color);
+
+    .content {
+      .header:not(:hover) {
+        color: var(--text-color);
+      }
+
+      .meta {
+        color: var(--text-color-alt);
+      }
+    }
+  }
+
+  .ui.segment {
+    background-color: var(--card-color);
+    border: 1px solid var(--card-border-color)
+  }
+}

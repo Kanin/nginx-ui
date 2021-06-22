@@ -3,21 +3,21 @@ import * as SitePage from './pages/site.mjs';
 
 let editor = null;
 toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-bottom-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-bottom-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
 }
 
 
@@ -56,6 +56,7 @@ function reload_nginx() {
         }
     });
 }
+
 window.reload_nginx = reload_nginx;
 
 
@@ -93,6 +94,7 @@ function add_site() {
         }
     });
 }
+
 window.add_site = add_site;
 
 function enable_site(name, enable) {
@@ -117,6 +119,7 @@ function enable_site(name, enable) {
     });
 
 }
+
 window.enable_site = enable_site;
 
 function update_site(name) {
@@ -142,6 +145,7 @@ function update_site(name) {
     });
 
 }
+
 window.update_site = update_site;
 
 function fetch_site(name) {
@@ -158,6 +162,7 @@ function fetch_site(name) {
         });
 
 }
+
 window.fetch_site = fetch_site;
 
 function remove_site(name) {
@@ -177,6 +182,7 @@ function remove_site(name) {
     });
 
 }
+
 window.remove_site = remove_site;
 
 function fetch_html(url) {
@@ -218,6 +224,7 @@ function update_config(name) {
     });
 
 }
+
 window.update_config = update_config;
 
 function load_config(name) {

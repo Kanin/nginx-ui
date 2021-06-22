@@ -11,8 +11,6 @@ Jinja2 = "*"
 uWSGI = "*"
 Werkzeug = "*"
 libsass = "*"
-rcssmin = "*"
-rjsmin = "*"
 flask-sqlalchemy = "*"
 flask-toastr = "*"
 
