@@ -13,6 +13,6 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", os.urandom(64).hex())
 
     # Pathing
-    NGINX_PATH = "/hostfs/etc/nginx"
+    NGINX_PATH = "/etc/nginx"
     SITES_AVAILABLE_PATH = os.path.join(NGINX_PATH, "sites-available")
     SITES_ENABLED_PATH = os.path.join(NGINX_PATH, "sites-enabled")

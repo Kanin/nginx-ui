@@ -11,10 +11,10 @@ from app.api import api
 @api.route("/reload-nginx", methods=["POST"])
 @login_required
 def reload_nginx():
-    res = subprocess.run("nginx -t", shell=True, stderr=subprocess.PIPE)
+    res = subprocess.run("/etc/nginx -t", shell=True, stderr=subprocess.PIPE)
     if res.returncode != 0:
         return make_response({"success": False, "message": str(res.stderr)}), 400
-    subprocess.run("nginx -s reload", shell=True)
+    subprocess.run("/etc/nginx -s reload", shell=True)
     return make_response({"success": True}), 200
 
 
