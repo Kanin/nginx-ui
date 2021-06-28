@@ -14,6 +14,7 @@ libsass = "*"
 flask-sqlalchemy = "*"
 flask-toastr = "*"
 gunicorn = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
