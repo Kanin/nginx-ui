@@ -13,6 +13,7 @@ Werkzeug = "*"
 libsass = "*"
 flask-sqlalchemy = "*"
 flask-toastr = "*"
+gunicorn = "*"
 
 [dev-packages]
 
